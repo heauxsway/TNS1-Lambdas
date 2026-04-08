@@ -1,0 +1,402 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--d1:#1a0a0a;--d2:#2a1010;--d3:#3d1a0e;--brown:#7a3520;--warm:#A2662B;--gold:#c8933a;--light:#E1C09D;--cream:#faf5ee;--white:#fff;--text:#1a0a0a}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden}
+
+/* NAV */
+nav{background:var(--d1);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;position:sticky;top:0;z-index:200;height:60px;gap:1rem}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo .crest{width:36px;height:36px;background:var(--warm);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:0.75rem;color:var(--white);font-weight:900;flex-shrink:0}
+.nav-logo .name{color:var(--white);font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;line-height:1.2}
+.nav-logo .name span{display:block;font-size:0.6rem;font-weight:400;opacity:0.6;letter-spacing:0.12em}
+.nav-sector{color:var(--light);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;opacity:0.6;padding:0 1.5rem;border-left:1px solid rgba(255,255,255,0.1);border-right:1px solid rgba(255,255,255,0.1);white-space:nowrap}
+nav ul{list-style:none;display:flex;gap:0;align-items:center}
+nav ul li a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.78rem;font-weight:500;padding:0 0.85rem;height:60px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:all 0.2s}
+nav ul li a:hover,nav ul li a.active{color:var(--white);border-bottom-color:var(--gold)}
+.nav-btns{display:flex;gap:8px;flex-shrink:0}
+.btn-outline{border:1px solid rgba(255,255,255,0.35);color:var(--white);background:transparent;padding:6px 14px;font-size:0.75rem;font-weight:600;letter-spacing:0.05em;cursor:pointer;border-radius:4px;font-family:'Inter',sans-serif}
+.btn-solid{background:var(--brown);color:var(--white);border:none;padding:6px 14px;font-size:0.75rem;font-weight:600;letter-spacing:0.05em;cursor:pointer;border-radius:4px;font-family:'Inter',sans-serif}
+
+/* SECTIONS */
+section{display:none}
+section.active{display:block}
+
+/* HERO */
+.hero{background:radial-gradient(ellipse at 30% 60%,#4a1e10 0%,#2a0f0a 40%,#0e0505 100%);min-height:90vh;display:flex;align-items:center;padding:5rem 10% 4rem;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--warm),transparent)}
+.hero-inner{max-width:700px;position:relative;z-index:1}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem}
+.hero-eyebrow::before{content:'';width:40px;height:2px;background:var(--gold)}
+.hero-eyebrow span{color:var(--gold);font-size:0.75rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,6vw,5rem);color:var(--white);line-height:1.05;font-weight:900;margin-bottom:0.75rem}
+.hero h2{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,2.5vw,1.8rem);color:rgba(255,255,255,0.5);font-weight:700;margin-bottom:1.5rem}
+.hero p{color:rgba(255,255,255,0.65);font-size:1rem;line-height:1.7;max-width:520px;margin-bottom:2.5rem;font-weight:300}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-hero-primary{background:var(--brown);color:var(--white);border:none;padding:14px 28px;font-size:0.85rem;font-weight:700;letter-spacing:0.08em;cursor:pointer;border-radius:4px;font-family:'Inter',sans-serif;text-transform:uppercase}
+.btn-hero-secondary{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,0.4);padding:14px 28px;font-size:0.85rem;font-weight:700;letter-spacing:0.08em;cursor:pointer;border-radius:4px;font-family:'Inter',sans-serif;text-transform:uppercase}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.3);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;text-align:center}
+.scroll-hint::before{content:'↓';display:block;font-size:1rem;margin-bottom:4px;animation:bob 2s infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+
+/* STATS BAR */
+.stats-bar{background:var(--brown);display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:1.5rem;text-align:center;border-right:1px solid rgba(255,255,255,0.1)}
+.stat:last-child{border-right:none}
+.stat .num{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--white);font-weight:900;display:block;line-height:1}
+.stat .label{font-size:0.65rem;color:rgba(255,255,255,0.65);letter-spacing:0.2em;text-transform:uppercase;margin-top:4px;display:block;font-weight:600}
+
+/* WHO WE ARE */
+.about-section{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:center;max-width:1100px;margin:0 auto;padding:5rem 2rem}
+.about-img{background:var(--cream);border-radius:8px;height:420px;display:flex;align-items:flex-end;overflow:hidden;position:relative}
+.about-img-placeholder{width:100%;height:100%;background:linear-gradient(135deg,var(--d2),var(--d3));display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px}
+.about-img-placeholder .greek{font-family:'Playfair Display',serif;font-size:5rem;color:rgba(225,192,157,0.15);font-weight:900}
+.about-img-caption{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);background:rgba(225,192,157,0.9);color:var(--d1);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:6px 16px;border-radius:20px;white-space:nowrap}
+.about-text{padding:0 3rem}
+.eyebrow{color:var(--warm);font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.75rem}
+.about-text h2{font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--d1);font-weight:900;line-height:1.2;margin-bottom:0.75rem}
+.about-text h2 em{color:var(--warm);font-style:normal}
+.about-underline{width:50px;height:3px;background:var(--gold);margin-bottom:1.5rem;border-radius:2px}
+.about-text p{color:#444;font-size:0.95rem;line-height:1.75;margin-bottom:1rem;font-weight:300}
+.about-text p strong{color:var(--d1);font-weight:600}
+
+/* CHAPTERS */
+.chapters-section{background:var(--cream);padding:5rem 2rem}
+.section-title-center{text-align:center;margin-bottom:3rem}
+.section-title-center .eyebrow{margin-bottom:0.5rem}
+.section-title-center h2{font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--d1);font-weight:900}
+.section-title-center h2 em{color:var(--warm);font-style:normal}
+.title-bar{width:60px;height:3px;background:var(--gold);margin:0.75rem auto 0;border-radius:2px}
+.chapters-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;max-width:1100px;margin:0 auto}
+.ch-card{background:var(--white);border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,0.08);transition:transform 0.2s,box-shadow 0.2s}
+.ch-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(65,31,31,0.12)}
+.ch-card-top{background:linear-gradient(135deg,var(--d1),var(--d3));padding:1.5rem;text-align:center}
+.ch-card-top .greek{font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--light);font-weight:900}
+.ch-card-body{padding:1.25rem}
+.ch-card-body h3{font-weight:700;font-size:0.95rem;color:var(--d1);margin-bottom:4px}
+.ch-card-body .school{font-size:0.82rem;color:#666;margin-bottom:0.75rem;line-height:1.4}
+.ch-card-body .tag{background:var(--cream);color:var(--warm);font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 10px;border-radius:20px;display:inline-block}
+
+/* EVENTS */
+.events-section{padding:5rem 2rem;max-width:900px;margin:0 auto}
+.events-list{display:flex;flex-direction:column;gap:1px;background:rgba(0,0,0,0.06);border-radius:8px;overflow:hidden}
+.ev-item{background:var(--white);display:grid;grid-template-columns:90px 1fr auto;align-items:center;gap:1.5rem;padding:1.25rem 1.5rem;border-left:3px solid var(--brown);transition:background 0.15s}
+.ev-item:hover{background:#fdf9f5}
+.ev-date{text-align:center}
+.ev-date .month{font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--warm);display:block}
+.ev-date .day{font-family:'Playfair Display',serif;font-size:2rem;color:var(--d1);font-weight:900;line-height:1;display:block}
+.ev-info .title{font-weight:700;font-size:0.95rem;color:var(--d1);margin-bottom:2px}
+.ev-info .meta{font-size:0.82rem;color:#777}
+.ev-tag{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:4px 12px;border-radius:20px;white-space:nowrap}
+.tag-all{background:#f0e8f5;color:#7c3aed}
+.tag-beta{background:#e8f0fe;color:#1a56c4}
+.tag-gamma{background:#e6f4ea;color:#1e6b35}
+.tag-tac{background:#fff3e0;color:#b45309}
+.tag-eps{background:#fce8e8;color:#b91c1c}
+
+/* ACCOMPLISHMENTS */
+.acc-section{background:var(--cream);padding:5rem 2rem}
+.acc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;max-width:1100px;margin:0 auto}
+.acc-card{background:var(--white);border-radius:8px;padding:1.5rem;border:1px solid rgba(0,0,0,0.07);border-top:3px solid var(--brown);position:relative}
+.acc-type{font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--warm);margin-bottom:0.5rem}
+.acc-card h3{font-weight:700;font-size:1rem;color:var(--d1);margin-bottom:0.5rem;line-height:1.3}
+.acc-card p{font-size:0.88rem;color:#555;line-height:1.65;font-weight:300;margin-bottom:0.75rem}
+.acc-card .brother{font-size:0.8rem;color:var(--warm);font-weight:600}
+.acc-card .school-info{font-size:0.78rem;color:#888;font-style:italic}
+
+/* HISTORY */
+.history-section{background:var(--d2);padding:5rem 2rem}
+.history-section .section-title-center h2{color:var(--white)}
+.history-section .section-title-center .eyebrow{color:var(--gold)}
+.history-intro-text{color:rgba(255,255,255,0.65);font-size:0.95rem;line-height:1.75;max-width:650px;margin:0 auto 3rem;text-align:center;font-weight:300}
+.timeline{max-width:750px;margin:0 auto;position:relative}
+.timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(200,147,58,0.3);transform:translateX(-50%)}
+.tl-row{display:grid;grid-template-columns:1fr 50px 1fr;margin-bottom:2.5rem}
+.tl-row.left .tl-body{grid-column:1;text-align:right;padding-right:2rem}
+.tl-row.left .tl-spacer{grid-column:3}
+.tl-row.right .tl-body{grid-column:3;text-align:left;padding-left:2rem}
+.tl-row.right .tl-spacer{grid-column:1}
+.tl-center{grid-column:2;display:flex;justify-content:center;padding-top:4px}
+.tl-dot{width:12px;height:12px;background:var(--gold);border-radius:50%;border:2px solid var(--d2);box-shadow:0 0 0 2px var(--gold)}
+.tl-body .year{font-family:'Playfair Display',serif;color:var(--gold);font-size:1.2rem;font-weight:900;display:block}
+.tl-body h4{color:var(--white);font-size:0.9rem;font-weight:600;margin:2px 0 4px}
+.tl-body p{color:rgba(255,255,255,0.5);font-size:0.82rem;line-height:1.5;font-weight:300}
+
+footer{background:var(--d1);padding:2rem;text-align:center;border-top:1px solid rgba(255,255,255,0.08)}
+footer p{color:rgba(255,255,255,0.4);font-size:0.75rem;letter-spacing:0.1em}
+footer .footer-name{color:rgba(255,255,255,0.7);font-weight:600;font-size:0.85rem;margin-bottom:4px}
+
+@media(max-width:700px){
+  nav ul{display:none}
+  .about-section{grid-template-columns:1fr}
+  .about-img{height:250px}
+  .about-text{padding:2rem 0 0}
+  .timeline::before{left:16px}
+  .tl-row{grid-template-columns:32px 1fr}
+  .tl-row.left .tl-body,.tl-row.right .tl-body{grid-column:2;text-align:left;padding:0 0 0 1rem}
+  .tl-row.left .tl-spacer,.tl-row.right .tl-spacer{display:none}
+  .tl-center{grid-column:1}
+  .ev-item{grid-template-columns:60px 1fr;gap:1rem}
+  .ev-tag{display:none}
+}
+</style>
+
+<nav>
+  <a href="#" class="nav-logo" onclick="return false">
+    <div class="crest">ΛΘΦ</div>
+    <div class="name">Lambda Theta Phi<span>Latin Fraternity, Inc.</span></div>
+  </a>
+  <span class="nav-sector">Tennessee Sector 1</span>
+  <ul>
+    <li><a href="#" class="active" onclick="show('home',this);return false">Home</a></li>
+    <li><a href="#" onclick="show('chapters',this);return false">Chapters</a></li>
+    <li><a href="#" onclick="show('events',this);return false">Events</a></li>
+    <li><a href="#" onclick="show('accomplishments',this);return false">Accomplishments</a></li>
+    <li><a href="#" onclick="show('history',this);return false">History</a></li>
+  </ul>
+  <div class="nav-btns">
+    <button class="btn-solid">Become a Lambda</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="active">
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow"><span>Tennessee Sector 1</span></div>
+      <h1>Lambda Theta Phi</h1>
+      <h2>Latin Fraternity, Inc.</h2>
+      <p>Brotherhood rooted in Latino heritage, academic excellence, and a lifelong commitment to community and service.</p>
+      <div class="hero-btns">
+        <button class="btn-hero-primary" onclick="show('chapters',document.querySelectorAll('nav ul li a')[1])">Our Chapters</button>
+        <button class="btn-hero-secondary" onclick="show('history',document.querySelectorAll('nav ul li a')[4])">Our History</button>
+      </div>
+    </div>
+    <div class="scroll-hint">↓<br>Scroll</div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat"><span class="num">1975</span><span class="label">Founded Nationally</span></div>
+    <div class="stat"><span class="num">4</span><span class="label">TN Sector 1 Chapters</span></div>
+    <div class="stat"><span class="num">ΛΘΦ</span><span class="label">La Primera</span></div>
+    <div class="stat"><span class="num">∞</span><span class="label">Brothers for Life</span></div>
+  </div>
+
+  <div class="about-section">
+    <div class="about-img">
+      <div class="about-img-placeholder">
+        <div class="greek">ΛΘΦ</div>
+      </div>
+      <div class="about-img-caption">Tennessee Sector 1</div>
+    </div>
+    <div class="about-text">
+      <div class="eyebrow">Who We Are</div>
+      <h2>More Than a <em>Fraternity</em></h2>
+      <div class="about-underline"></div>
+      <p>Lambda Theta Phi Latin Fraternity, Inc. is the first and largest Latin fraternity in the United States. Founded on the principle of uplifting the Latino community, we cultivate leaders who serve with integrity, excel academically, and build bonds that last a lifetime.</p>
+      <p><strong>Tennessee Sector 1</strong> represents four active chapters across the state — united in scholarship, cultural pride, and service to our communities from Nashville to Chattanooga.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTERS -->
+<section id="chapters">
+  <div style="padding:5rem 2rem">
+    <div class="section-title-center">
+      <div class="eyebrow">Our Brotherhood</div>
+      <h2>Tennessee Sector 1 <em>Chapters</em></h2>
+      <div class="title-bar"></div>
+    </div>
+    <div class="chapters-grid">
+      <div class="ch-card">
+        <div class="ch-card-top"><div class="greek">ΒΗ</div></div>
+        <div class="ch-card-body">
+          <h3>Beta Eta Chapter</h3>
+          <div class="school">Vanderbilt University<br>Nashville, TN</div>
+          <span class="tag">Active Chapter</span>
+        </div>
+      </div>
+      <div class="ch-card">
+        <div class="ch-card-top"><div class="greek">ΓΓ</div></div>
+        <div class="ch-card-body">
+          <h3>Gamma Gamma Chapter</h3>
+          <div class="school">University of Tennessee Knoxville<br>Knoxville, TN</div>
+          <span class="tag">Active Chapter</span>
+        </div>
+      </div>
+      <div class="ch-card">
+        <div class="ch-card-top"><div class="greek">TAC1</div></div>
+        <div class="ch-card-body">
+          <h3>Tennessee Associate Chapter 1</h3>
+          <div class="school">Middle Tennessee State University<br>Murfreesboro, TN</div>
+          <span class="tag">Associate Chapter</span>
+        </div>
+      </div>
+      <div class="ch-card">
+        <div class="ch-card-top"><div class="greek">ΕΒ</div></div>
+        <div class="ch-card-body">
+          <h3>Epsilon Beta Chapter</h3>
+          <div class="school">University of Tennessee at Chattanooga<br>Chattanooga, TN</div>
+          <span class="tag">Active Chapter</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+  <div class="events-section">
+    <div class="section-title-center">
+      <div class="eyebrow">What's Coming Up</div>
+      <h2>Upcoming <em>Events</em></h2>
+      <div class="title-bar"></div>
+    </div>
+    <div class="events-list">
+      <div class="ev-item">
+        <div class="ev-date"><span class="month">Apr</span><span class="day">19</span></div>
+        <div class="ev-info"><div class="title">Sector 1 Spring Meet & Greet</div><div class="meta">Nashville, TN · 6:00 PM CST</div></div>
+        <span class="ev-tag tag-all">All Chapters</span>
+      </div>
+      <div class="ev-item">
+        <div class="ev-date"><span class="month">May</span><span class="day">3</span></div>
+        <div class="ev-info"><div class="title">Beta Eta Scholarship Banquet</div><div class="meta">Vanderbilt University · 7:00 PM CST</div></div>
+        <span class="ev-tag tag-beta">Beta Eta</span>
+      </div>
+      <div class="ev-item">
+        <div class="ev-date"><span class="month">May</span><span class="day">17</span></div>
+        <div class="ev-info"><div class="title">Latino Heritage Week Kickoff</div><div class="meta">University of Tennessee Knoxville</div></div>
+        <span class="ev-tag tag-gamma">Gamma Gamma</span>
+      </div>
+      <div class="ev-item">
+        <div class="ev-date"><span class="month">Jun</span><span class="day">7</span></div>
+        <div class="ev-info"><div class="title">Sector 1 Summer Brotherhood Retreat</div><div class="meta">Location TBD · Tennessee Sector 1</div></div>
+        <span class="ev-tag tag-all">All Chapters</span>
+      </div>
+      <div class="ev-item">
+        <div class="ev-date"><span class="month">Aug</span><span class="day">22</span></div>
+        <div class="ev-info"><div class="title">Fall Rush — Interest Meeting</div><div class="meta">All Campuses Simultaneously</div></div>
+        <span class="ev-tag tag-all">Sector-Wide</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCOMPLISHMENTS -->
+<section id="accomplishments">
+  <div class="acc-section">
+    <div class="section-title-center">
+      <div class="eyebrow">Pride of the Sector</div>
+      <h2>Brother <em>Accomplishments</em></h2>
+      <div class="title-bar"></div>
+    </div>
+    <div class="acc-grid">
+      <div class="acc-card">
+        <div class="acc-type">Scholarship</div>
+        <h3>Dean's List Achievement</h3>
+        <p>Multiple brothers across all four chapters achieved Dean's List recognition for academic excellence in the spring semester.</p>
+        <div class="brother">Beta Eta & Gamma Gamma Brothers</div>
+        <div class="school-info">Vanderbilt · UT Knoxville</div>
+      </div>
+      <div class="acc-card">
+        <div class="acc-type">Internship</div>
+        <h3>Fortune 500 Corporate Internship</h3>
+        <p>Brother secured a competitive summer internship at a leading firm in the finance sector, representing Lambda Theta Phi with distinction.</p>
+        <div class="brother">Epsilon Beta Chapter</div>
+        <div class="school-info">UTC Chattanooga</div>
+      </div>
+      <div class="acc-card">
+        <div class="acc-type">Award</div>
+        <h3>Campus Leadership Recognition</h3>
+        <p>TAC1 brother recognized by MTSU's Student Government Association for outstanding contributions to Latino student life on campus.</p>
+        <div class="brother">Tennessee Associate Chapter 1</div>
+        <div class="school-info">Middle Tennessee State University</div>
+      </div>
+      <div class="acc-card">
+        <div class="acc-type">Career</div>
+        <h3>Graduate School Acceptance</h3>
+        <p>Beta Eta alumnus accepted into a top-ranked law program, continuing the tradition of brothers pursuing advanced degrees.</p>
+        <div class="brother">Beta Eta Alumni</div>
+        <div class="school-info">Vanderbilt University</div>
+      </div>
+      <div class="acc-card">
+        <div class="acc-type">Service</div>
+        <h3>Community Service Award</h3>
+        <p>Gamma Gamma chapter honored for 500+ hours of community service including bilingual tutoring programs across Knoxville.</p>
+        <div class="brother">Gamma Gamma Chapter</div>
+        <div class="school-info">UT Knoxville</div>
+      </div>
+      <div class="acc-card">
+        <div class="acc-type">National Award</div>
+        <h3>LΘΦ National Scholarship Recipient</h3>
+        <p>Sector 1 brother awarded the national Lambda Theta Phi scholarship for demonstrated leadership and academic achievement.</p>
+        <div class="brother">Sector 1 Representative</div>
+        <div class="school-info">Tennessee Sector 1</div>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:2rem;color:#888;font-size:0.82rem;font-style:italic">Have an accomplishment to share? Contact your chapter president to be featured here.</p>
+  </div>
+</section>
+
+<!-- HISTORY -->
+<section id="history">
+  <div class="history-section">
+    <div class="section-title-center">
+      <div class="eyebrow">Our Legacy</div>
+      <h2>Tennessee Sector 1 <em style="color:var(--gold)">History</em></h2>
+      <div class="title-bar"></div>
+    </div>
+    <p class="history-intro-text">Tennessee Sector 1 represents the proud presence of Lambda Theta Phi across the Volunteer State. From our earliest chapters to our growing footprint at universities throughout the region, our brothers have upheld the founding ideals of scholarship, unity, and Latino culture.</p>
+
+    <div class="timeline">
+      <div class="tl-row left">
+        <div class="tl-body"><span class="year">1975</span><h4>National Founding</h4><p>Lambda Theta Phi founded at Kean University, Union, NJ — the first Latin fraternity in the United States.</p></div>
+        <div class="tl-center"><div class="tl-dot"></div></div>
+        <div class="tl-spacer"></div>
+      </div>
+      <div class="tl-row right">
+        <div class="tl-spacer"></div>
+        <div class="tl-center"><div class="tl-dot"></div></div>
+        <div class="tl-body"><span class="year">Est.</span><h4>Beta Eta Chapter — Vanderbilt</h4><p>Lambda Theta Phi establishes its first Tennessee presence at Vanderbilt University in Nashville.</p></div>
+      </div>
+      <div class="tl-row left">
+        <div class="tl-body"><span class="year">Est.</span><h4>Gamma Gamma Chapter — UTK</h4><p>Gamma Gamma chartered at UT Knoxville, bringing brotherhood to East Tennessee.</p></div>
+        <div class="tl-center"><div class="tl-dot"></div></div>
+        <div class="tl-spacer"></div>
+      </div>
+      <div class="tl-row right">
+        <div class="tl-spacer"></div>
+        <div class="tl-center"><div class="tl-dot"></div></div>
+        <div class="tl-body"><span class="year">Est.</span><h4>Epsilon Beta Chapter — UTC</h4><p>Epsilon Beta brings Lambda Theta Phi to the Scenic City at the University of Tennessee at Chattanooga.</p></div>
+      </div>
+      <div class="tl-row left">
+        <div class="tl-body"><span class="year">Recent</span><h4>TAC1 — MTSU</h4><p>Tennessee Associate Chapter 1 established at Middle Tennessee State University in Murfreesboro.</p></div>
+        <div class="tl-center"><div class="tl-dot"></div></div>
+        <div class="tl-spacer"></div>
+      </div>
+      <div class="tl-row right">
+        <div class="tl-spacer"></div>
+        <div class="tl-center"><div class="tl-dot"></div></div>
+        <div class="tl-body"><span class="year">Today</span><h4>Sector 1 United</h4><p>Four chapters across Tennessee — united in brotherhood, scholarship, and service to the Latino community.</p></div>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:3rem;color:rgba(255,255,255,0.3);font-size:0.8rem;font-style:italic">Help us complete this history — submit key dates and milestones to your sector leadership.</p>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-name">Lambda Theta Phi Latin Fraternity, Inc.</p>
+  <p>Tennessee Sector 1 · Beta Eta · Gamma Gamma · TAC1 · Epsilon Beta</p>
+  <p style="margin-top:8px;font-style:italic">"La Primera y La Más Fina"</p>
+</footer>
+
+<script>
+function show(id,el){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav ul li a').forEach(a=>a.classList.remove('active'));
+  if(el)el.classList.add('active');
+  window.scrollTo(0,0);
+}
+</script>
